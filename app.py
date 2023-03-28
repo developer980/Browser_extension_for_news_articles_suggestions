@@ -16,6 +16,7 @@ nltk.download('brown')
 nltk.download('averaged_perceptron_tagger')
 nltk.download('wordnet')
 
+# https://abc7chicago.com/gwyneth-paltrow-ski-collision-park-city-trial-2023/12985760/"
 url = "https://abc7chicago.com/gwyneth-paltrow-ski-collision-park-city-trial-2023/12985760/"
 trustworthy_url = "https://www.bbc.co.uk/search?q=GWYNETH+PALTROW"
 
