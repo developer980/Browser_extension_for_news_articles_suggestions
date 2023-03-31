@@ -1,0 +1,13 @@
+body{
+    font-family:'Open sans';
+    font-size: 20px;
+    margin:0;
+    padding:10px;
+    /* background-color: rgb(73, 138, 71); */
+}
+
+.close-button{
+    background-color: rgb(61, 61, 61);
+    color:white;
+    border:none;
+}

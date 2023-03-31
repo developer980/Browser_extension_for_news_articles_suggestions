@@ -7,7 +7,7 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from textblob import TextBlob
 from flask import Flask, render_template, request, jsonify, Response
 import json
-
+from flask_cors import CORS
 
 stopwords = set(stopwords.words('english'))
 # import spacy
@@ -22,6 +22,7 @@ nltk.download('averaged_perceptron_tagger')
 nltk.download('wordnet')
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/', methods = ['GET', 'POST'])
 def index():
@@ -61,7 +62,7 @@ def post():
     else:
         content_information = info1
 
-    print(content_information)
+    # print(content_information)
 
     # if len(content_information):
     #     print("Length")
@@ -83,7 +84,7 @@ def post():
     title_keywords = [token.replace("'s", '').replace(":", '').lower() for token in title_tokens if token not in stopwords]
     title_keywords_string = "+".join(title_keywords)
 
-
+    print(title)
 
     trustworthy_response = requests.get("https://www.bbc.co.uk/search?q=" + title_keywords_string)
     trustworthy_content = BeautifulSoup(trustworthy_response.content, "html.parser")
@@ -132,8 +133,8 @@ def post():
     percentage = similarity_score/len(info_toverify) * 100
 
     obj = {'data':"The similarity percentage is: " + str(percentage) + " %"}
-    response = Response(json.dumps(obj), status=200, mimetype='application/json')
-    print()
+    response = Response(json.dumps({'data':percentage}), status=200, mimetype='application/json')
+    print(obj)
     return response
 
 # https://abc7chicago.com/gwyneth-paltrow-ski-collision-park-city-trial-2023/12985760/"
