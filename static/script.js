@@ -4,6 +4,8 @@ displayMessage("Hello there!");
 //     displayMessage("Hello there!");
 // })
 
+chrome.tabs.onUpdated.addListener(console.log("Hellloooooo!"))
+
 let message_width = 200
 
 function displayMessage(message) {

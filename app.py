@@ -8,12 +8,17 @@ from textblob import TextBlob
 from flask import Flask, render_template, request, jsonify, Response
 import json
 from flask_cors import CORS
+import sys
+from bbc_scrape import bbc_data
+from the_wall_street_scrape import the_wall_street_data
+from keywords_posibilities import get_percentage
 
 stopwords = set(stopwords.words('english'))
 # import spacy
 # from nltk
 import requests
 from bs4 import BeautifulSoup
+# import sim_perc_calc
 
 nltk.download('punkt')
 nltk.download('stopwords')
@@ -36,10 +41,33 @@ def post():
     print(url)
     response = requests.get(url)
 
+
     content_toverify = BeautifulSoup(response.content, "html.parser")
 
+    page_metas = content_toverify.find_all('meta')
+
+    # attributes = page_metas.attrs
+
+    for meta in page_metas:
+        attributes = meta.attrs
+        # print(meta.attrs)
+
+        for key, value in attributes.items():
+
+            word = 'news'
+            if word in value:
+                print(value)
+
     title = content_toverify.find('title')
+
     title_tokens = nltk.word_tokenize(title.text)
+
+    title_names = []
+
+    for token in title_tokens:
+        if token[0].isupper():
+            title_names.append(token)
+
     info = content_toverify.find_all("article")
     info1 = content_toverify.find_all("main")
     content_information = info
@@ -56,18 +84,21 @@ def post():
             content_size1 = len(element.text)
     # print(len(element.text))  
 
-    if content_size > content_size1:
+    if len(info):
         content_information = info
 
     else:
         content_information = info1
 
     # print(content_information)
+    # if info in info1:
+    #     print("article is in main")
 
-    # if len(content_information):
-    #     print("Length")
-    #     print(len(content_information))
-    #     print(content_information)
+    # if content_size > content_size1 or info in info1:
+    #     content_information = info
+
+    # else:
+    #     content_information = info1
 
     info_toverify = []
     max_length = 0
@@ -77,61 +108,23 @@ def post():
         filtered_info = [str(word) for word in words if word not in stopwords]
         if len(filtered_info) > len(info_toverify):
             info_toverify = filtered_info
+        # print(piece.text)
         # print("article "  + str(len(info_toverify)))
+
+    info_toverify_string = ' '.join(word for word in info_toverify)
 
     # print("article" info_toverify)
 
     title_keywords = [token.replace("'s", '').replace(":", '').lower() for token in title_tokens if token not in stopwords]
-    title_keywords_string = "+".join(title_keywords)
+    
 
     print(title)
 
-    trustworthy_response = requests.get("https://www.bbc.co.uk/search?q=" + title_keywords_string)
-    trustworthy_content = BeautifulSoup(trustworthy_response.content, "html.parser")
-
-    links = trustworthy_content.find_all("a")
-
-    matches = 0
-
-    similarity_score = 0
-    count = 0;
-
-    for index, link in enumerate(links):
-        content = []
-        # print(index)
-        # print(link.text + ": " + str(len(link.text)))
-        # print(link.get('href'))
-        if set(link.text.lower().split(' ')).intersection(set(title_keywords_string.lower().split("+"))):
-            print(link.get('href'))
-            new_url = link.get('href')
-            information = requests.get(new_url)
-            information_content = BeautifulSoup(information.content, 'html.parser')
-            content = information_content.find_all('article')
-            print(len(content))
-            score = 0
-            count+=1
-            for index, piece in enumerate(content):
-                # print(content.find('div'))
-                # if index == 0:
-                # print(piece.text)
-                words = nltk.word_tokenize(piece.text)
-                filtered_piece = [word for word in words if word not in stopwords]
-                # print(len(filtered_piece))
-                final_result = ' '.join(word for word in filtered_piece)
-                # print(len(info_toverify))
-                for info in info_toverify:
-                    if final_result.find(info) != -1:
-                        score += 1
-                # if len(filtered_piece):
-                # print(filtered_piece)
-                print("score: " + str(score))
-                if score > similarity_score:
-                    similarity_score = score
-                break
-
-    print(similarity_score)
-    percentage = similarity_score/len(info_toverify) * 100
-
+    percentage = get_percentage(title_keywords, info_toverify)
+    
+    # percentage = the_wall_street_data(title_keywords, info_toverify)
+    
+    print(title_names)
     obj = {'data':"The similarity percentage is: " + str(percentage) + " %"}
     response = Response(json.dumps({'data':percentage}), status=200, mimetype='application/json')
     print(obj)
@@ -141,12 +134,6 @@ def post():
 # url = "https://abc7chicago.com/gwyneth-paltrow-ski-collision-park-city-trial-2023/12985760/"
 
 
-
-# if matches:
-#     print("This article seems genuine")
-
-# else:
-#     print("This article seems suspicious")
 
 
 if __name__ == '__main__':
