@@ -6,6 +6,20 @@ body{
     /* background-color: rgb(73, 138, 71); */
 }
 
+.extension-body{
+    position:fixed;
+    top:10px;
+    right:10px;
+    padding:20px;
+    background-color: rgb(231, 231, 231);
+    border:2px solid rgb(105, 105, 105);
+    border-radius:5px;
+    color:rgb(97, 97, 97);
+    overflow:hidden;
+    font-family: 'Open Sans';
+}
+
+
 .close-button{
     background-color: rgb(61, 61, 61);
     color:white;

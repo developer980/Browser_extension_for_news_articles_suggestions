@@ -4,25 +4,15 @@ displayMessage("Hello there!");
 //     displayMessage("Hello there!");
 // })
 
-chrome.tabs.onUpdated.addListener(console.log("Hellloooooo!"))
+chrome.tabs.onUpdated.addListener(console.log("Searching..."))
 
 let message_width = 200
 
 function displayMessage(message) {
     let div = document.createElement('div');
-    console.log("HELLO THERE!")
-    div.style.position = "fixed"
-    div.style.top = "10px"
-    div.style.right = "10px"
-    div.style.padding = "20px"
-    div.style.backgroundColor = "rgb(168, 216, 166)"
-    div.style.border = "2px solid rgb(73, 138, 71)"
-    div.style.borderRadius = "5px"
-    div.style.color = "1px solid rgb(73, 138, 71)"
-    div.style.overflow = "hidden"
     div.style.zIndex = 9999;
     div.innerHTML = 
-    `<div style = 'position:relative'>
+    `<div class = "extension-body" style = 'position:relative'>
         <button id = "close-message" class = "close-button" style = 'position:fixed; top:11px; right:11px; width:20px' > 
             X
         </button>
