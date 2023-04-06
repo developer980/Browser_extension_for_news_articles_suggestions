@@ -11,7 +11,7 @@ from flask_cors import CORS
 import sys
 from bbc_scrape import bbc_data
 from the_wall_street_scrape import the_wall_street_data
-from keywords_posibilities import get_percentage
+from get_percentage import get_percentage
 
 stopwords = set(stopwords.words('english'))
 # import spacy
@@ -120,15 +120,22 @@ def post():
 
     print(title)
 
-    percentage = get_percentage(title_keywords, info_toverify)
+    response = get_percentage(title_keywords, info_toverify)
+    percentage = response.get('percentage')
+    suggestions = response.get('suggestions')
+    highest_perc = response.get('highest_percentage_link')
     
     # percentage = the_wall_street_data(title_keywords, info_toverify)
     
     print(title_names)
-    obj = {'data':"The similarity percentage is: " + str(percentage) + " %"}
-    response = Response(json.dumps({'data':percentage}), status=200, mimetype='application/json')
-    print(obj)
-    return response
+    # obj = {'data':"The similarity percentage is: " + str(percentage) + " %"}
+    obj = Response(json.dumps({
+        'percentage':percentage,
+        'suggestions':suggestions,
+        'highest_perc':highest_perc
+        }), status=200, mimetype='application/json')
+    # print(obj)
+    return obj
 
 # https://abc7chicago.com/gwyneth-paltrow-ski-collision-park-city-trial-2023/12985760/"
 # url = "https://abc7chicago.com/gwyneth-paltrow-ski-collision-park-city-trial-2023/12985760/"

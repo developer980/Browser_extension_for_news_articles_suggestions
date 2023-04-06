@@ -11,17 +11,47 @@ body{
     top:10px;
     right:10px;
     padding:20px;
+    width:50%;
+    max-width: 700px;
+    max-height: 500px;
     background-color: rgb(231, 231, 231);
     border:2px solid rgb(105, 105, 105);
     border-radius:5px;
     color:rgb(97, 97, 97);
-    overflow:hidden;
+    overflow-y:auto;
     font-family: 'Open Sans';
 }
 
+.extension-content{
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+}
+
+.list{
+    display:flex;
+    flex-direction: column;
+}
+
+.list-item{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.list > div {
+    border:1px solid black
+}
 
 .close-button{
     background-color: rgb(61, 61, 61);
     color:white;
     border:none;
+    z-index: 9999;
+    position:fixed; 
+    top:0px; 
+    right:0px; 
+    width:50px;
+    height:50px;
+    border-radius: 50%;
+    cursor:pointer
 }

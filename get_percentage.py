@@ -7,6 +7,11 @@ stopwords = set(stopwords.words('english'))
 
 
 def get_percentage(title_keywords, info_toverify):
+
+    suggestions = []
+    highest_percentage_link = {}
+    print("obj")
+    print(highest_percentage_link)
     
     checked_links = []
     percentage = 0
@@ -32,9 +37,11 @@ def get_percentage(title_keywords, info_toverify):
             last += 1;
             # print(new_keywords)    
 
-            response = reuters_data(new_keywords, info_toverify, similarity_score, checked_links, percentage)
+            # response = reuters_data(new_keywords, info_toverify, similarity_score, checked_links, percentage)
+            response = bbc_data(new_keywords, info_toverify, similarity_score, checked_links, percentage, suggestions, highest_percentage_link)
             percentage = response.get('percentage')
+            highest_percentage_link = response.get('highest_percentage_link')
             checked_links = response.get('checked_links')
-            print(percentage)
+            print(response)
 
-    return percentage
+    return response
