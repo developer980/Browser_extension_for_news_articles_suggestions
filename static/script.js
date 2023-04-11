@@ -46,38 +46,48 @@ function displayMessage(message) {
     })
         .then(response => response.json())
         .then(data => {
+            console.log("data:")
             console.log(data)
             // percentage = math
-            div.innerHTML = 
-            `<div style = 'position:relative'>
-                <button id = "close-message" class = "close-button"> 
-                    X
-                </button>
-                <div class = 'extension-content'>
-                    <div>
-                        This article seems ${Math.round(data.percentage)} % similar to this article: <a href = "${data.highest_perc.href}">${data.highest_perc.text}</a>
-                    </div>
-                    <div class = 'title'>
-                        Here are some related articles:
-                    </div>
-                    <div id = "list">
-                    </div>
-                </div>
-            </div>`
-            document.body.appendChild(div)
-            for (let i = 0; i < data.suggestions.length; i++){
-                let link = data.suggestions[i]
-                let item = document.createElement('div')
-                let punctuation = ';'
-                if (i == data.suggestions.length - 1) {
-                    punctuation = ""
-                }
 
-                item.className = 'list-item'
-                item.innerHTML = `
-                    <a href = "${link.link_href}">${link.link_text}${punctuation}</a>
-                `
-                document.getElementById('list').appendChild(item)
+            if (data.message != 'none') {
+                div.innerHTML =
+                    `<div style = 'position:relative'>
+                    <button id = "close-message" class = "close-button"> 
+                        X
+                    </button>
+                    <div class = 'extension-content'>
+                            <div>
+                                This article seems <b>${Math.round(data.percentage)} %</b> similar to this article: <a href = "${data.highest_perc.href}">${data.highest_perc.text}</a>
+                            </div>
+                            <div class = 'title'>
+                                <div><b>Here are some related articles:</b></div>
+                            </div>
+                            <div id = "list">
+                            </div>
+                    </div>
+                </div>`
+                document.body.appendChild(div)
+                for (let i = 0; i < data.suggestions.length; i++) {
+                    let link = data.suggestions[i]
+                    let item = document.createElement('div')
+                    let punctuation = ';'
+                    if (i == data.suggestions.length - 1) {
+                        punctuation = ""
+                    }
+
+                    item.className = 'list-item'
+                    item.style.color = "rgb(56, 70, 95)";
+                    // item
+                    item.innerHTML = `
+                        <a href = "${link.link_href}">${link.link_text}${punctuation}</a>
+                    `
+                    document.getElementById('list').appendChild(item)
+                }
+            }
+
+            else {
+                div.innerHTML = "<p>Doesn't seem to be a news article</p>"
             }
 
             document.getElementById('close-message').addEventListener('click', () => {

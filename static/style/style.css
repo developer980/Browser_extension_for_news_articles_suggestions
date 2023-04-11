@@ -25,7 +25,7 @@ body{
 .extension-content{
     display:flex;
     flex-direction: column;
-    gap:10px;
+    gap:20px;
 }
 
 .list{
@@ -34,12 +34,18 @@ body{
 }
 
 .list-item{
-    margin-top: 10px;
+    margin-bottom: 10px;
     margin-left: 10px;
+    text-decoration: none;
 }
 
 .list > div {
     border:1px solid black
+}
+
+.suggested-link{
+    text-decoration: none;
+    color:rgb(56, 70, 95);
 }
 
 .close-button{

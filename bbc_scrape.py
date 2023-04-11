@@ -49,7 +49,10 @@ def bbc_data(title_keywords, info_toverify, similarity_score, checked_links, per
                         information = requests.get(new_url)
                         information_content = BeautifulSoup(information.content, 'html.parser')
                         content = information_content.find_all('article')
-                        print(len(content))
+                        headline = information_content.find('h1')
+                        # if headline is not None:
+                        #     print("headline:")
+                        #     print(headline.text)
                         score = 0
                         count+=1
                         for index, piece in enumerate(content):
