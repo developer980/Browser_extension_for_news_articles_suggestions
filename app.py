@@ -10,7 +10,7 @@ import json
 from flask_cors import CORS
 import sys
 from bbc_scrape import bbc_data
-from the_wall_street_scrape import the_wall_street_data
+# from the_wall_street_scrape import the_wall_street_data
 from get_percentage import get_percentage
 
 stopwords = set(stopwords.words('english'))
