@@ -1,7 +1,9 @@
 from nltk import word_tokenize
 from nltk.corpus import stopwords
-from bbc_scrape import bbc_data
-from reuters_scrape import reuters_data
+import sys
+sys.path.append("../")
+from scrape.bbc_scrape import bbc_data
+# from reuters_scrape import reuters_data
 
 stopwords = set(stopwords.words('english'))
 

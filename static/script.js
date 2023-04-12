@@ -16,24 +16,7 @@ function displayMessage(message) {
     div.id = 'ext'
     div.className = "extension-body"
     div.style.zIndex = 9998;
-    div.innerHTML = 
-    `<div style = 'position:relative'>
-        <button id = "close-message" class = "close-button" style = '' >     
-            X
-        </button>
-        <div>
-            ${message}
-        </div>
-    </div>`
-    document.body.appendChild(div)
-    console.log(document.URL)
     url = document.URL
-    // request(url, (err, res, html) => {
-    //     if (!err && response.statusCode == 200) {
-    //         const $ = cheerio.load(html)
-
-    //     }
-    // })
 
     fetch('http://127.0.0.1:5000/post', {
         method: 'POST',
@@ -58,10 +41,10 @@ function displayMessage(message) {
                     </button>
                     <div class = 'extension-content'>
                             <div>
-                                This article seems <b>${Math.round(data.percentage)} %</b> similar to this article: <a href = "${data.highest_perc.href}">${data.highest_perc.text}</a>
+                                This article seems <b>${Math.round(data.percentage)} %</b> similar to this article: <a class = "suggestion-link" href = "${data.highest_perc.href}">${data.highest_perc.text}</a>
                             </div>
                             <div class = 'title'>
-                                <div><b>Here are some related articles:</b></div>
+                                <div><b>Here are some related articles taken from trusted sources:</b></div>
                             </div>
                             <div id = "list">
                             </div>
@@ -80,14 +63,15 @@ function displayMessage(message) {
                     item.style.color = "rgb(56, 70, 95)";
                     // item
                     item.innerHTML = `
-                        <a href = "${link.link_href}">${link.link_text}${punctuation}</a>
+                        <a class = "suggestion-link" href = "${link.link_href}">${link.link_text}</a>${punctuation}
                     `
                     document.getElementById('list').appendChild(item)
                 }
             }
 
             else {
-                div.innerHTML = "<p>Doesn't seem to be a news article</p>"
+                // div.innerHTML = "<p>Doesn't seem to be a news article</p>"
+                document.body.removeChild(div)
             }
 
             document.getElementById('close-message').addEventListener('click', () => {

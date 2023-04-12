@@ -43,9 +43,9 @@ body{
     border:1px solid black
 }
 
-.suggested-link{
+.suggestion-link{
     text-decoration: none;
-    color:rgb(56, 70, 95);
+    color:rgb(62, 153, 214);
 }
 
 .close-button{

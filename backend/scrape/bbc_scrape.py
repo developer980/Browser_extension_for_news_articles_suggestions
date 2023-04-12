@@ -3,7 +3,9 @@ import nltk
 from nltk.corpus import stopwords
 from bs4 import BeautifulSoup
 import requests
-import sim_perc_calc
+
+sys.path.append('../')
+from  similarities.sim_perc_calc import get_similarity_percentage
 
 stopwords = set(stopwords.words('english'))
 
@@ -70,7 +72,7 @@ def bbc_data(title_keywords, info_toverify, similarity_score, checked_links, per
                                 #         print(name)
                                 response = {}
                                 if len(info_toverify) < len(trustworthy_info):
-                                    response = sim_perc_calc.get_similarity_percentage(info_toverify, trustworthy_info, similarity_score, percentage)
+                                    response = get_similarity_percentage(info_toverify, trustworthy_info, similarity_score, percentage)
                                     percentage = response.get('percentage')
                                     is_the_highest = response.get("is_the_highest") 
                                     print("value: " + str(response.get("is_the_highest")))
@@ -85,7 +87,7 @@ def bbc_data(title_keywords, info_toverify, similarity_score, checked_links, per
                                     break
                                 
                                 else:
-                                    response = sim_perc_calc.get_similarity_percentage(trustworthy_info, info_toverify, similarity_score, percentage)
+                                    response = get_similarity_percentage(trustworthy_info, info_toverify, similarity_score, percentage)
                                     percentage = response.get('percentage')
                                     is_the_highest = response.get("is_the_highest") 
                                     print("value: " + str(response.get("is_the_highest")))
