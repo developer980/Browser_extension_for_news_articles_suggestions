@@ -1,2 +1,3 @@
 .vercel
-./backend/api/requirements.js
+vercel.json
+./backend/api/requirements.txt
