@@ -1,6 +1,6 @@
 # import pandas as pd
 import nltk
-from nltk.corpus import stopwords, wordnet
+# from nltk.corpus import stopwords, wordnet
 from nltk import word_tokenize, pos_tag
 from nltk.stem import PorterStemmer
 # from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
@@ -13,15 +13,17 @@ sys.path.append('../')
 from scrape.bbc_scrape import bbc_data
 from similarities.get_percentage import get_percentage
 
-stopwords = set(stopwords.words('english'))
 import requests
 from bs4 import BeautifulSoup
-
+"C:\Users\tudor\AppData\Roaming\nltk_data\corpora"
 nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('brown')
 nltk.download('averaged_perceptron_tagger')
 nltk.download('wordnet')
+
+
+stopwords = set(nltk.corpus.stopwords.words('english'))
 
 days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
