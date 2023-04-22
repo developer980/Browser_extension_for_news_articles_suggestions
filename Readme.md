@@ -4,7 +4,7 @@
 
  - This extension is meant to extract the information from various news articles the user visits and compare with trusted sources.
  
- - The extension's purpose is to estimate how different is the information present in the article viewed by the user compared to the information taken from various articles form a trusted source, by calculating and returning a similarity percentage.
+ - The extension's purpose is to estimate how different is the information present in the article viewed by the user compared to the information collected from various articles form a trusted source, by calculating and returning a similarity percentage.
  
  - The extension will also suggest other related news articles from different sources to look for, so the user gets more information about a certain topic.
  
