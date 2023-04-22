@@ -1,12 +1,12 @@
 // const request = require('request')
 
-console.log("Oh, Hi there!")
-displayMessage("Searching...");
 // document.addEventListener('DOMContentLoaded', () => {
 //     displayMessage("Hello there!");
 // })
 
 // chrome.tabs.onUpdated.addListener(console.log("Hellloooooo!"))
+console.log("Oh, Hi there!")
+displayMessage("Searching...");
 
 let message_width = 200
 
@@ -31,13 +31,18 @@ function displayMessage(message) {
         .then(data => {
             console.log("data:")
             console.log(data)
-            // percentage = math
+        // percentage = math
+            const image = document.createElement('img')
+            
+            img_url = chrome.runtime.getURL('static/icons/x.svg')
+                
+            image.src = img_url
+            console.log("URL: " + img_url)
 
             if (data.message != 'none') {
                 div.innerHTML =
                     `<div style = 'position:relative'>
-                    <button id = "close-message" class = "close-button"> 
-                        X
+                    <button id = "close-message" class = "close-button">
                     </button>
                     <div class = 'extension-content'>
                             <div>
@@ -50,13 +55,21 @@ function displayMessage(message) {
                             </div>
                     </div>
                 </div>`
+
+
+
                 document.body.appendChild(div)
+
+                document.getElementById('close-message').appendChild(image)
+
+                // document.getElementById('close-message').appendChild(image)
+
                 for (let i = 0; i < data.suggestions.length; i++) {
                     let link = data.suggestions[i]
                     let item = document.createElement('div')
                     let punctuation = ';'
                     if (i == data.suggestions.length - 1) {
-                        punctuation = ""
+                        punctuation = "."
                     }
 
                     item.className = 'list-item'

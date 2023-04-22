@@ -6,7 +6,7 @@
     "host_permissions":[
         "<all_urls>"
     ],
-    "permissions":["activeTab"],
+    "permissions":["activeTab", "nativeMessaging"],
     "action": {
         "default_popup": "./templates/index.html"
     },
@@ -18,5 +18,16 @@
         "js": ["static/script.js"],
         "css":["static/style/style.css"]
         }
-    ]
+    ],
+
+    "web_accessible_resources": [
+        {
+          "resources": [
+            "static/icons/x.svg"
+          ],
+          "matches": [
+            "<all_urls>"
+          ]
+        }
+      ]
 }

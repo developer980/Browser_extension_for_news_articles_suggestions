@@ -5,7 +5,7 @@ from nltk import word_tokenize, pos_tag
 from nltk.stem import PorterStemmer
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from textblob import TextBlob
-from flask import Flask, render_template, request, jsonify, Response
+from flask import Flask, render_template, request, jsonify, Response, send_from_directory
 import json
 from flask_cors import CORS
 import sys
@@ -36,7 +36,6 @@ CORS(app)
 @app.route('/', methods = ['GET', 'POST'])
 def index():
    return render_template('index.html')
-
 @app.route('/post', methods=['GET', 'POST'])
 def post():
     req = request.get_json()
@@ -62,8 +61,17 @@ def post():
                 print(value)
 
     title = content_toverify.find('title')
+
+    if title is None:
+        print("doesn't seem an article")
+        message = Response(json.dumps({
+            'message':'none'
+        }), status = 200, mimetype = "application/json")
+        return message
+
     title_tokens = nltk.word_tokenize(title.text)
     title_names = []
+
 
     for token in title_tokens:
         if token[0].isupper():
@@ -90,7 +98,7 @@ def post():
 
     
 
-    if headline is not None and hasDay or hasMonth:
+    if headline is not None and (hasDay or hasMonth):
 
         info = content_toverify.find_all("article")
         info1 = content_toverify.find_all("main")
@@ -150,6 +158,7 @@ def post():
         return obj
 
     else:
+        print("doesn't seem an article")
         message = Response(json.dumps({
             'message':'none'
         }), status = 200, mimetype = "application/json")
