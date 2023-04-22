@@ -1,4 +1,4 @@
-import pandas as pd
+# import pandas as pd
 import nltk
 from nltk.corpus import stopwords, wordnet
 from nltk import word_tokenize, pos_tag
