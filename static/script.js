@@ -18,7 +18,7 @@ function displayMessage(message) {
     div.style.zIndex = 9998;
     url = document.URL
 
-    fetch('https://developer980.github.io/Browser_extension_for_estimating_the_credibility_of_news_articles/post', {
+    fetch('https://west-versed-ocarina.glitch.me//post', {
         method: 'POST',
         headers: {
             "Content-type":"application/json"
