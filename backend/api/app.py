@@ -17,7 +17,7 @@ import requests
 from bs4 import BeautifulSoup
 # "C:\Users\tudor\AppData\Roaming\nltk_data\corpora"
 
-#
+
 nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('brown')
