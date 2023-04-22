@@ -18,7 +18,7 @@ function displayMessage(message) {
     div.style.zIndex = 9998;
     url = document.URL
 
-    fetch('http://127.0.0.1:5000/post', {
+    fetch('https://developer980.github.io/Browser_extension_for_estimating_the_credibility_of_news_articles/post', {
         method: 'POST',
         headers: {
             "Content-type":"application/json"
