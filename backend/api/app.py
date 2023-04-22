@@ -18,7 +18,7 @@ from bs4 import BeautifulSoup
 
 
 nltk.download('punkt')
-nltk.download('stopwords', download_dir="/usr/local/share/nltk_data")
+nltk.download('stopwords', download_dir="/usr/local/share/nltk_data/corpora")
 nltk.download('brown')
 nltk.download('averaged_perceptron_tagger')
 nltk.download('wordnet')
