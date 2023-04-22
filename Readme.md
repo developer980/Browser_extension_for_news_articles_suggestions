@@ -4,6 +4,10 @@
 
  - This extension is meant to extract the information from various news articles the user visits and compare with trusted sources.
  
- - The extension's purpose is not to determine if a news article is fake or not, but to estimate how different are the two pieces of information, by calculating and returning a similarity percentage.
+ - The extension's purpose is to estimate how different is the information present in the article viewed by the user compared to the information taken from various articles form a trusted source, by calculating and returning a similarity percentage.
  
  - The extension will also suggest other related news articles from different sources to look for, so the user gets more information about a certain topic.
+ 
+![Screenshot 2023-04-23 004859](https://user-images.githubusercontent.com/91996303/233808062-9763f1c6-bc6f-4329-9674-8ebcb550cf67.png)
+
+![image](https://user-images.githubusercontent.com/91996303/233808278-d4dc6eec-ab4b-42a8-a0fb-d936cddd7f8b.png)
