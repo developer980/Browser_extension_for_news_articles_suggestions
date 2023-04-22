@@ -18,7 +18,7 @@ function displayMessage(message) {
     div.style.zIndex = 9998;
     url = document.URL
 
-    fetch('https://west-versed-ocarina.glitch.me//post', {
+    fetch('http://127.0.0.1:5000/post', {
         method: 'POST',
         headers: {
             "Content-type":"application/json"
