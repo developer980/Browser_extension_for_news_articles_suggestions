@@ -11,15 +11,11 @@ from flask_cors import CORS
 import sys
 sys.path.append('../')
 from scrape.bbc_scrape import bbc_data
-# from the_wall_street_scrape import the_wall_street_data
 from similarities.get_percentage import get_percentage
 
 stopwords = set(stopwords.words('english'))
-# import spacy
-# from nltk
 import requests
 from bs4 import BeautifulSoup
-# import sim_perc_calc
 
 nltk.download('punkt')
 nltk.download('stopwords')
