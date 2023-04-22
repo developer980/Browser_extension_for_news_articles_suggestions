@@ -3,7 +3,7 @@ import nltk
 from nltk.corpus import stopwords, wordnet
 from nltk import word_tokenize, pos_tag
 from nltk.stem import PorterStemmer
-from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+# from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from textblob import TextBlob
 from flask import Flask, render_template, request, jsonify, Response, send_from_directory
 import json
