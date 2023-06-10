@@ -6,6 +6,10 @@
  
  - The extension's purpose is to estimate how different is the information present in the article viewed by the user compared to the information collected from various articles form a trusted source, by calculating and returning a similarity percentage.
  
+ - Based on the visited article, data will be scraped from articles from the same topic and it will be compared with the current data.
+ 
+ - The extension uses BeautifulSoup to collect data
+ 
  - The extension will also suggest other related news articles from different sources to look for, so the user gets more information about a certain topic.
  
 ![Screenshot 2023-04-23 004859](https://user-images.githubusercontent.com/91996303/233808062-9763f1c6-bc6f-4329-9674-8ebcb550cf67.png)
