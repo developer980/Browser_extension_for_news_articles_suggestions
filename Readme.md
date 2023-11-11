@@ -8,7 +8,7 @@
  
  - Based on the visited article, data will be scraped from articles from the same topic and it will be compared with the current data.
  
- - The extension uses BeautifulSoup to collect data
+ - The extension uses the BeautifulSoup library to collect data.
  
  - The extension will also suggest other related news articles from different sources to look for, so the user gets more information about a certain topic.
  
